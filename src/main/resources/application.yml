@@ -1,0 +1,27 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: base-demo
+
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+
+  datasource:
+    url: jdbc:mysql://mysql-local.lazydsr.com:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+
+  redis:
+    host: redis-local.lazydsr.com
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
