@@ -44,8 +44,13 @@ public class JsonUtil {
         return null;
     }
 
-    public Map toMap(String str) throws IOException {
-        return OBJECT_MAPPER.readValue(str, Map.class);
+    public static Map toMap(String str) {
+        try {
+            return OBJECT_MAPPER.readValue(str, Map.class);
+        } catch (JsonProcessingException e) {
+            log.error("toMap=", e);
+        }
+        return Collections.emptyMap();
     }
 
     /**
@@ -60,13 +65,8 @@ public class JsonUtil {
     public Map<Object, Object> compare(String json1, String json2) {
         Map m1 = null;
         Map m2 = null;
-        try {
-            m1 = toMap(json1);
-            m2 = toMap(json2);
-        } catch (IOException e) {
-            log.warn("compare e=", e);
-            return Collections.emptyMap();
-        }
+        m1 = toMap(json1);
+        m2 = toMap(json2);
 
         Map<Object, Object> result = new HashMap<>(16);
         Map<String, Object> finalM = m2;
