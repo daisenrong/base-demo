@@ -8,6 +8,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
 import com.lazydsr.base.demo.basedemo.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.lazydsr.base.demo.basedemo.entity.User;
 import com.lazydsr.base.demo.basedemo.repository.UserRepository;
+import reactor.core.publisher.Flux;
 
 /**
  * UserServiceImplTest Description : TODO
@@ -53,10 +57,17 @@ class UserServiceTest {
     @Test
     public void bitTest(){
        redisTemplate.opsForValue().setBit("bit:user",2,true);
-       redisTemplate.opsForValue().setBit("bit:user",1000000000,true);
-       log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",1));
+       redisTemplate.opsForValue().setBit("bit:user",20000000,true);
        log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",2));
+       log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",20000000));
        log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",1000000000));
     }
+
+    @Test
+    public void delKey(){
+        redisTemplate.delete("bit:user");
+
+    }
+
 
 }
