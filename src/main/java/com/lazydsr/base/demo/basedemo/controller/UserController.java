@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lazydsr.base.demo.basedemo.common.Response;
-import com.lazydsr.base.demo.basedemo.common.ResponseUtils;
+import com.lazydsr.base.demo.basedemo.common.ResponseUtil;
 import com.lazydsr.base.demo.basedemo.service.UserService;
 
 @RestController
@@ -19,6 +19,6 @@ public class UserController {
     @GetMapping("get")
     public Response get(Integer id) {
 
-        return ResponseUtils.success(userService.get(id).orElse(null));
+        return ResponseUtil.success(userService.get(id).orElse(null));
     }
 }

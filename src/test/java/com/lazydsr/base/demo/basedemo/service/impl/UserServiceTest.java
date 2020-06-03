@@ -2,6 +2,7 @@ package com.lazydsr.base.demo.basedemo.service.impl;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import com.lazydsr.base.demo.basedemo.service.UserService;
 import com.lazydsr.base.demo.basedemo.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -39,7 +41,21 @@ class UserServiceTest {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private UserService userService;
+    @Autowired
     private RedisTemplate<String,Object> redisTemplate;
+
+    @Test
+    public void getTest() {
+        int count = 0;
+        for (int i = 10001; i < 100000; i++) {
+            Optional<User> user = userService.get(i);
+            if (user.isPresent()) {
+                count++;
+            }
+        }
+        System.out.println("==========" + count);
+    }
 
     @Test
     public void hashTest(){
@@ -57,7 +73,7 @@ class UserServiceTest {
     @Test
     public void bitTest(){
        redisTemplate.opsForValue().setBit("bit:user",2,true);
-       redisTemplate.opsForValue().setBit("bit:user",20000000,true);
+        redisTemplate.opsForValue().setBit("bit:user", 2000000, true);
        log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",2));
        log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",20000000));
        log.info("bit:user = {}",redisTemplate.opsForValue().getBit("bit:user",1000000000));
@@ -65,9 +81,15 @@ class UserServiceTest {
 
     @Test
     public void delKey(){
-        redisTemplate.delete("bit:user");
+        redisTemplate.delete("user:bloom");
 
     }
 
+    @Test
+    public void initBloom() {
+        for (int i = 1; i <= 10000; i++) {
+            redisTemplate.opsForValue().setBit("user:bloom", i, true);
+        }
+    }
 
 }

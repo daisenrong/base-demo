@@ -1,6 +1,6 @@
 package com.lazydsr.base.demo.basedemo.common;
 
-public class ResponseUtils {
+public class ResponseUtil {
     public static <T> Response<T> success() {
         return success(null);
     }
