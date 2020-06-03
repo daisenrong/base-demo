@@ -4,17 +4,24 @@ spring:
   application:
     name: base-demo
 
-  jpa:
-    database: mysql
-    show-sql: true
-    generate-ddl: true
-
   datasource:
     url: jdbc:mysql://mysql-local.lazydsr.com:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: false
+    open-in-view: true
+    hibernate:
+      ddl-auto: none
+
 
   redis:
     host: redis-local.lazydsr.com
