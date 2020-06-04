@@ -41,9 +41,9 @@ public class DemoTest {
     @Test
     public void test02(){
         Long count = 2L;
-        for (int i = 2; i < 40; i++) {
+        for (int i = 2; i < 65; i++) {
             count=count*2;
-            System.out.println(i+"  =   "+count);
+            System.out.println(i + "  次  =   " + count);
         }
     }
 
@@ -51,6 +51,14 @@ public class DemoTest {
     public void test03(){
         LocalDate now = LocalDate.now();
         System.out.println("ssss"+now);
+    }
+
+    @Test
+    public void test04() {
+        System.out.println(Short.MAX_VALUE);
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Long.MAX_VALUE);
+        System.out.println(Double.MAX_VALUE);
     }
 
 
