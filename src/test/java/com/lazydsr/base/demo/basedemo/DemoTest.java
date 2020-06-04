@@ -3,6 +3,10 @@ package com.lazydsr.base.demo.basedemo;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.BitSet;
 
 /**
  * DemoTest
@@ -26,4 +30,28 @@ public class DemoTest {
         }
         System.out.println("命中数量："+hitCount);
     }
+
+    @Test
+    public void test01(){
+        BitSet bitSet = new BitSet(1 << 24);
+        System.out.println(bitSet.size());
+        bitSet.set(1);
+    }
+
+    @Test
+    public void test02(){
+        Long count = 2L;
+        for (int i = 2; i < 40; i++) {
+            count=count*2;
+            System.out.println(i+"  =   "+count);
+        }
+    }
+
+    @Test
+    public void test03(){
+        LocalDate now = LocalDate.now();
+        System.out.println("ssss"+now);
+    }
+
+
 }
