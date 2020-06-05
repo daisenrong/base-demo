@@ -40,7 +40,7 @@ public class DemoTest {
 
     @Test
     public void test02(){
-        Long count = 2L;
+        long count = 2L;
         for (int i = 2; i < 65; i++) {
             count=count*2;
             System.out.println(i + "  次  =   " + count);
