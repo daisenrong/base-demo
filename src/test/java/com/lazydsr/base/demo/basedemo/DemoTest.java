@@ -6,6 +6,9 @@ import com.google.common.hash.Funnels;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.BitSet;
 
 /**
@@ -59,6 +62,14 @@ public class DemoTest {
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Long.MAX_VALUE);
         System.out.println(Double.MAX_VALUE);
+    }
+
+    @Test
+    public void test05(){
+        LocalDateTime registerTimeDayOfLastMonth =
+                LocalDate.parse("2019-01-01", DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay()
+                        .with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println(registerTimeDayOfLastMonth.toString());
     }
 
 
