@@ -141,10 +141,8 @@ class UserServiceTest {
         Random random = new Random();
         for (int i = 0; i < 100000; i++) {
             User user = new User();
-
             user.setAge(random.nextInt(120));
             user.setName("name-"+System.currentTimeMillis()+"-"+random.nextInt(1000000));
-
             userRepository.save(user);
         }
     }
