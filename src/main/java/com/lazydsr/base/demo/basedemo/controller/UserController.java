@@ -19,6 +19,6 @@ public class UserController {
     @GetMapping("get")
     public Response get(Integer id) {
 
-        return ResponseUtil.success(userService.get(id).orElse(null));
+        return ResponseUtil.success(userService.get(id));
     }
 }

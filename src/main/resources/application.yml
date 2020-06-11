@@ -5,9 +5,9 @@ spring:
     name: base-demo
 
   datasource:
-    url: jdbc:mysql://mysql-local.lazydsr.com:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/user_center?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
-    password: root
+    password: Lazy@dsr
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -24,7 +24,7 @@ spring:
 
 
   redis:
-    host: redis-local.lazydsr.com
+    host: 127.0.0.1
     port: 6379
     password:
     lettuce:
