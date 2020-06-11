@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService {
             return Optional.ofNullable(JsonUtil.toBean(userJson, User.class));
         }
         // 如果不存在，那么使用布隆过滤器进行过滤，决定是否查询数据库
-        Boolean bit = redisTemplate.opsForValue().getBit(REDIS_PRXFIX_USER_BLOOM, id);
-        if (Objects.isNull(bit) || !bit) {
-            return Optional.empty();
-        }
+        // Boolean bit = redisTemplate.opsForValue().getBit(REDIS_PRXFIX_USER_BLOOM, id);
+        // if (Objects.isNull(bit) || !bit) {
+        //     return Optional.empty();
+        // }
 
         Optional<User> userOptional = userRepository.findById(id);
         userOptional.ifPresent(user -> redisTemplate.opsForValue().set(REDIS_PRXFIX_USER + id, JsonUtil.toJson(user),
