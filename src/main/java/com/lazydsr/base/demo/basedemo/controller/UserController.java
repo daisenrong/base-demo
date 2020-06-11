@@ -31,23 +31,4 @@ public class UserController {
         return ResponseUtil.success(userService.get(id));
     }
 
-    @GetMapping("init")
-    public Response init() {
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-
-            List<User> users = new ArrayList<>();
-            for (int j = 0; j < 1000; j++) {
-                User user = new User();
-                user.setAge(random.nextInt(120));
-                user.setName("name-"+System.currentTimeMillis()+"-"+random.nextInt(1000000));
-                users.add(user);
-            }
-            CompletableFuture.runAsync(()->{
-                userRepository.saveAll(users);
-            });
-        }
-        return ResponseUtil.success();
-    }
-
 }
